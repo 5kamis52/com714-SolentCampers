@@ -18,12 +18,12 @@ class Camp:
     header = ['id', 'name', 'region']
 
     if os.path.isfile('data/camps.csv'):
-      f = open('data/camps.csv', 'a', encoding='UTF8')
+      f = open('data/camps.csv', 'a')
       writer = csv.writer(f)
       writer.writerow([self.id, self.name, self.region])
       f.close()
     else:
-      f = open('data/camps.csv', 'w', encoding='UTF8')
+      f = open('data/camps.csv', 'w')
       writer = csv.writer(f)
       writer.writerow(header)
       writer.writerow([self.id, self.name, self.region])

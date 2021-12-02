@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.messagebox
 from enums import CamperType, CampRegion
 import random
-import classCamp
+import classCamp, classCamper
 
 class AdminWindow:
     def __init__(self, root):
@@ -83,7 +83,10 @@ class AdminWindow:
         button.pack(side=tk.TOP)
 
     def saveVan(self):
-        print(self.vanType.get())
+        camperID = random.randint(100,999)
+        newCamper = classCamper.Camper(camperID, self.vanType.get())
+        newCamper.writeCamperData()
+        tkinter.messagebox.showinfo(master=self.window, title="Van Added", message="Camper Van  added with ID " + str(camperID) )
 
     def saveCamp(self):
         if self.campName.get() == "":
