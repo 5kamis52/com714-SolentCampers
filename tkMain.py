@@ -1,8 +1,20 @@
-from tkinter import *
+import tkinter as tk
 
-def showMain():
-    window=Tk()
+class MainWindow:
+    def __init__(self):
+        self.window = tk.Tk()
 
-    window.title('Solent Campers')
-    window.geometry("500x400+400+100")
-    window.mainloop()
+        label1 = tk.Label(text="Welcome To Solent Camper!")
+        label1.pack(side=tk.TOP, pady=(20,0))
+
+        button1 = tk.Button(self.window, text="Customer", height=5, width=20)
+        button1.pack(side=tk.LEFT, padx=(10, 10))
+
+        button2 = tk.Button(self.window, text="Advisor", height=5, width=20)
+        button2.pack(side=tk.LEFT, padx=(10, 10))
+
+        button3 = tk.Button(self.window, text="Administrator", height=5, width=20)
+        button3.pack(side=tk.LEFT, padx=(10, 10))
+
+        self.window.title('Solent Campers')
+        self.window.geometry("500x250+400+150")

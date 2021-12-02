@@ -1,3 +1,4 @@
 import tkMain
 
-tkMain.showMain()
+mainWindow = tkMain.MainWindow()
+mainWindow.window.mainloop()
