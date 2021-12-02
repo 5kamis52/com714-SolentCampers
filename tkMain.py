@@ -7,7 +7,7 @@ class MainWindow:
     def __init__(self):
         self.window = tk.Tk()
 
-        label1 = tk.Label(text="Welcome To Solent Camper!")
+        label1 = tk.Label(self.window, text="Welcome To Solent Camper!")
         label1.pack(side=tk.TOP, pady=(20,0))
 
         button1 = tk.Button(self.window, text="Customer", height=5, width=20, command=self.showCustomerWindow)
