@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkAvisor
+import tkCustomer
 
 class MainWindow:
     def __init__(self):
@@ -8,7 +9,7 @@ class MainWindow:
         label1 = tk.Label(text="Welcome To Solent Camper!")
         label1.pack(side=tk.TOP, pady=(20,0))
 
-        button1 = tk.Button(self.window, text="Customer", height=5, width=20)
+        button1 = tk.Button(self.window, text="Customer", height=5, width=20, command=self.showCustomerWindow)
         button1.pack(side=tk.LEFT, padx=(10, 10))
 
         button2 = tk.Button(self.window, text="Advisor", height=5, width=20, command=self.showAdvisorWindow)
@@ -23,3 +24,7 @@ class MainWindow:
     def showAdvisorWindow(self):
         advisorWindow = tkAvisor.AdvisorWindow(self.window)
         advisorWindow.window.mainloop()
+
+    def showCustomerWindow(self):
+        customerWindow = tkCustomer.CustomerWindow(self.window)
+        customerWindow.window.mainloop()
