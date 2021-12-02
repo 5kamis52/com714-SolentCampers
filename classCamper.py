@@ -15,12 +15,12 @@ class Camper:
     header = ['id', 'type']
 
     if os.path.isfile('data/campers.csv'):
-      f = open('data/campers.csv', 'a')
+      f = open('data/campers.csv', 'a', newline='', encoding='utf-8')
       writer = csv.writer(f)
       writer.writerow([self.id, self.size])
       f.close()
     else:
-      f = open('data/campers.csv', 'w')
+      f = open('data/campers.csv', 'w', newline='', encoding='utf-8')
       writer = csv.writer(f)
       writer.writerow(header)
       writer.writerow([self.id, self.size])

@@ -1,5 +1,10 @@
 import tkinter as tk
+import tkinter.messagebox
 from enums import CamperType, CampRegion
+import csv
+import os
+import classBooking
+
 class AdvisorWindow:
     def __init__(self, root):
         self.window = tk.Toplevel(root)
@@ -19,6 +24,8 @@ class AdvisorWindow:
         self.campName = tk.StringVar()
         self.campName.set("")
 
+        self.campList = []
+
         labelvan = tk.Label(self.window, text="Van Type")
         labelvan.pack(side=tk.TOP, pady=(5,0))
 
@@ -28,8 +35,50 @@ class AdvisorWindow:
         labelregion = tk.Label(self.window, text="Region")
         labelregion.pack(side=tk.TOP, pady=(5,0))
 
-        optionRegion = tk.OptionMenu(self.window, self.regionName, *[e.name for e in CampRegion])
+        optionRegion = tk.OptionMenu(self.window, self.regionName, *[e.name for e in CampRegion], command=self.campRegionSelected)
         optionRegion.pack(side=tk.TOP)
+        
+        labelcamp = tk.Label(self.window, text="Camp Name")
+        labelcamp.pack(side=tk.TOP, pady=(5,0))
+
+        self.optionCamp = tk.OptionMenu(self.window, self.campName, self.campList)        
+
+        self.bookButton = tk.Button(self.window, text="Book", command=self.saveBooking)
 
         self.window.title('Advisor - Solent Campers')
         self.window.geometry("400x500+400+100")
+
+    def campRegionSelected(self, region):
+
+        for e in CampRegion:
+            if e.name == region:
+                region = e.value
+                break
+
+        camps = []
+        if not os.path.isfile('data/camps.csv'):
+            tkinter.messagebox.showerror(master=self.window, title="Sorry", message="Data Files Do Not Exist or are unreadable. Contact Administrator")
+            return
+        else:
+            f = open('data/camps.csv', 'r')
+            reader = csv.reader(f)
+            header = next(reader)
+            for row in reader:
+                if int(row[2]) == region:
+                    camps.append(row)
+
+            f.close()
+            if not len(camps) == 0:
+                self.campList = camps
+                self.campName.set(camps[0][1])
+                self.displayCampName()
+            else:
+                tkinter.messagebox.showerror(master=self.window, title="Sorry", message="No Camping Site Added in this region. Contact Administrator.")
+                return
+
+    def displayCampName(self):
+        self.optionCamp.pack(side=tk.TOP, pady=(0,30))
+        self.bookButton.pack(side=tk.TOP)
+
+    def saveBooking(self):
+        print(self.campName.get(), self.regionName.get(), self.vanType.get())
