@@ -1,9 +1,13 @@
 import tkinter as tk
+import tkinter.messagebox
 from enums import CamperType, CampRegion
+import random
+import classCamp
 
 class AdminWindow:
     def __init__(self, root):
         self.window = tk.Toplevel(root)  
+        self.window.grab_set()
 
         self.displayHeader()
         self.displayCampSiteForm()
@@ -83,7 +87,10 @@ class AdminWindow:
 
     def saveCamp(self):
         if self.campName.get() == "":
-            print("Camp Name Can't be Empty")
+            tkinter.messagebox.showerror(master=self.window, title="Missing Value", message="Camp Name Can't be Empty")
             return 
-            
-        print(self.campName.get() + " " + self.region.get())
+
+        campID = random.randint(100,999)
+        newCamp = classCamp.Camp(campID, self.campName.get(), self.region.get())
+        newCamp.writeCampData()
+        tkinter.messagebox.showinfo(master=self.window, title="Camp Site Added", message="Camp "+self.campName.get()+" added to " + self.region.get() )
