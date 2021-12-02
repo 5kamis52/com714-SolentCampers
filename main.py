@@ -1,0 +1,3 @@
+import tkMain
+
+tkMain.showMain()
