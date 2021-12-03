@@ -1,13 +1,14 @@
 import tkinter as tk
 import tkinter.messagebox
 from enums import CamperType, CampRegion
-import csv
-import os
-import classBooking
+import csv, os, classBooking, random
+import tkBooking
+from datetime import date
 
 class AdvisorWindow:
     def __init__(self, root):
         self.window = tk.Toplevel(root)
+        self.window.grab_set()
 
         label1 = tk.Label(self.window, text="Welcome To Solent Camper!")
         label1.pack(side=tk.TOP, pady=(20,0))
@@ -41,12 +42,12 @@ class AdvisorWindow:
         labelcamp = tk.Label(self.window, text="Camp Name")
         labelcamp.pack(side=tk.TOP, pady=(5,0))
 
-        self.optionCamp = tk.OptionMenu(self.window, self.campName, self.campList)        
+        self.optionCamp = tk.OptionMenu(self.window, self.campName, self.campList)   
 
         self.bookButton = tk.Button(self.window, text="Book", command=self.saveBooking)
 
         self.window.title('Advisor - Solent Campers')
-        self.window.geometry("400x500+400+100")
+        self.window.geometry("400x350+400+100")
 
     def campRegionSelected(self, region):
 
@@ -81,4 +82,13 @@ class AdvisorWindow:
         self.bookButton.pack(side=tk.TOP)
 
     def saveBooking(self):
-        print(self.campName.get(), self.regionName.get(), self.vanType.get())
+        bookingID = random.randint(100,999)
+        campID = 0
+        for camp in self.campList:
+            if camp[1] == self.campName.get():
+                campID = camp[0]
+                
+        newBooking = classBooking.Booking(bookingID, campID, self.vanType.get(), self.regionName.get(), date.today())
+        newBooking.writeBookingData()
+
+        bookingWindow = tkBooking.BookingWindow(self.window, [bookingID, self.campName.get(), self.vanType.get(), self.regionName.get(), date.today()])
