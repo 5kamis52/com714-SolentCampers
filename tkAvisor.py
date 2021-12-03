@@ -98,3 +98,4 @@ class AdvisorWindow:
         newBooking.writeBookingData()
 
         bookingWindow = tkBooking.BookingWindow(self.window, [bookingID, self.campName.get(), self.vanType.get(), self.regionName.get(), date.today()])
+        bookingWindow.window.mainloop()

@@ -15,7 +15,7 @@ class Booking:
         header = ['id', 'camp', 'van', 'ragion', 'book_date']
 
         if os.path.isfile('data/bookings.csv'):
-            f = open('data/campers.csv', 'a', newline='', encoding='utf-8')
+            f = open('data/bookings.csv', 'a', newline='', encoding='utf-8')
             writer = csv.writer(f)
             writer.writerow([self.id, self.campID, self.camperID, self.regionID, self.bookingDate])
             f.close()
