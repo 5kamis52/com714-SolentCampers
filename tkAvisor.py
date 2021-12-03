@@ -89,12 +89,8 @@ class AdvisorWindow:
 
     def saveBooking(self):
         bookingID = random.randint(100,999)
-        campID = 0
-        for camp in self.campList:
-            if camp[1] == self.campName.get():
-                campID = camp[0]
                 
-        newBooking = classBooking.Booking(bookingID, campID, self.vanType.get(), self.regionName.get(), date.today())
+        newBooking = classBooking.Booking(bookingID, self.campName.get(), self.vanType.get(), self.regionName.get(), date.today())
         newBooking.writeBookingData()
 
         bookingWindow = tkBooking.BookingWindow(self.window, [bookingID, self.campName.get(), self.vanType.get(), self.regionName.get(), date.today()])

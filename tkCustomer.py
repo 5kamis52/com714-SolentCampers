@@ -40,8 +40,10 @@ class CustomerWindow:
             f = open('data/bookings.csv', 'r', newline='', encoding='utf-8')
             reader = csv.reader(f)
             header = next(reader)
+            id = 0
             for row in reader:
-                bookingTable.insert(parent='',index='end',iid=0,text='',values=(row[0], row[1], row[2], row[3], row[4]))
+                bookingTable.insert(parent='',index='end',iid=id, text='',values=(row[0], row[1], row[2], row[3], row[4]))
+                id = id+1
             f.close()
 
             bookingTable.pack(side=tk.TOP)
