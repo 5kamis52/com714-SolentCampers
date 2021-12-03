@@ -69,6 +69,7 @@ class AdvisorWindow:
                     camps.append(row)
 
             f.close()
+
             if not len(camps) == 0:
                 self.campList = camps
                 self.campName.set(camps[0][1])
@@ -78,6 +79,11 @@ class AdvisorWindow:
                 return
 
     def displayCampName(self):
+        menu = self.optionCamp["menu"]
+        menu.delete(0, "end")
+        for value in self.campList:
+            menu.add_command(label=value[1], command=lambda v=value[1]: self.campName.set(v))
+
         self.optionCamp.pack(side=tk.TOP, pady=(0,30))
         self.bookButton.pack(side=tk.TOP)
 
