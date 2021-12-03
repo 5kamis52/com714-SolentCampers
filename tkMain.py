@@ -20,7 +20,7 @@ class MainWindow:
         button3.pack(side=tk.LEFT, padx=(10, 10))
 
         self.window.title('Solent Campers')
-        self.window.geometry("500x250+400+150")
+        self.window.geometry("500x350+400+150")
 
     def showAdvisorWindow(self):
         advisorWindow = tkAvisor.AdvisorWindow(self.window)
