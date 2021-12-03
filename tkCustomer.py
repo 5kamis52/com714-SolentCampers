@@ -73,7 +73,7 @@ class CustomerWindow:
 
                 dataList.append(data)
 
-                json_object = json.dumps(dataList, indent = 4)
-                with open("booking.json", "a") as outfile:
-                    outfile.write(json_object)
+            json_object = json.dumps(dataList, indent = 4)
+            with open("booking.json", "a") as outfile:
+                outfile.write(json_object)
             f.close()
