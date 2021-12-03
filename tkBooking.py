@@ -20,10 +20,10 @@ class BookingWindow:
         label4 = tk.Label(self.window, text="Camp Name: " + str(data[1]))
         label4.pack(side=tk.TOP, pady=(0,5))
 
-        label4 = tk.Label(self.window, text="Region: " + str(data[2]))
+        label4 = tk.Label(self.window, text="Region: " + str(data[3]))
         label4.pack(side=tk.TOP, pady=(0,5))
 
-        label4 = tk.Label(self.window, text="Camper Van Type: " + str(data[3]))
+        label4 = tk.Label(self.window, text="Camper Van Type: " + str(data[2]))
         label4.pack(side=tk.TOP, pady=(0,5))
 
 
