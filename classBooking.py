@@ -8,11 +8,6 @@ class Booking:
         self.campID = campID
         self.camperID = camperID
 
-        for e in CampRegion:
-            if e.name == regionID:
-                regionID = e.value
-                break
-
         self.regionID = regionID
         self.bookingDate = bookingDate
 
